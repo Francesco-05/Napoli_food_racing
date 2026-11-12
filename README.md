@@ -42,4 +42,4 @@ Facoltativo (scheda Variables): `FTP_SERVER` se il server non è `ftp.napolifood
 Cambia da sola in base alla data (ora di Roma): pre-gara, countdown (24-26/11), live (27-29/11), fine (dal 30/11).
 Per provare le fasi: aggiungi all'indirizzo `#fase-countdown`, `#fase-live`, `#fase-chiuso` o `#fase-fine`.
 
-La mappa parte con un giro di ricognizione quando entra in vista (la pallina corre fino al box, poi zoom sull'area food); i bottoni **'O box** e **'A pista** cambiano vista, **Rifai il giro** lo rifà. Con "riduci movimento" attivo parte già sull'area food.
+La mappa parte con un giro di ricognizione quando entra in vista (la pallina corre fino al box, poi zoom sull'area food); i bottoni **'O box** e **'A pista** cambiano vista, **Rifai il giro** lo rifà. Con "riduci movimento" attivo parte già sull'area food. Sul telefono si vedono solo le scritte della mappa che entrano intere.

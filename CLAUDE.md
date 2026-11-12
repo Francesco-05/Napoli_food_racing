@@ -49,6 +49,10 @@ Chi chiede le modifiche è **Buzz** (BUZZ Studio): rispondi in italiano, dagli d
 - Animare il `viewBox` di SVG grandi a ogni frame è pesante su Safari: si muove un livello con `transform` (vedi la mappa).
 - Animazioni CSS infinite dentro un SVG grande ridisegnano tutto l'SVG: mettile in un elemento HTML a parte (vedi `.m-pulse`).
 - `backface-visibility` va anche con il prefisso `-webkit-`.
+- Quello che cambia a ogni frame (pista e pallina della mappa) si disegna su un `<canvas>`: cambiare un path SVG a ogni frame fa ridipingere tutto l'SVG e su iPhone scatta.
+- Niente blocchi che cambiano altezza mentre si legge: le due didascalie della mappa stanno una sopra l'altra nella stessa cella (`.m-caps`), si cambia solo la visibilità.
+- Le scritte della mappa si nascondono da sole se non entrano intere nella cornice (funzione `etichette`). Se sposti una scritta in `parts.json`, ricontrolla a 390 e 320 px.
+- Rotazioni 3D (`rotateY`) dentro un contenitore ruotato: Safari le taglia a metà. Per i gettoni si usa `scaleX` in 2D.
 - Testa sempre con WebKit: `MOTORI=webkit node strumenti/controllo.js` (in locale serve `npx playwright install webkit`; in GitHub lo fa il workflow).
 
 ## Pubblicazione (Aruba)
