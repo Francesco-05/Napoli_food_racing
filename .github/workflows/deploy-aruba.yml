@@ -1,0 +1,69 @@
+name: Carica su Aruba
+
+# Ogni modifica alla cartella sito/ sul ramo main viene caricata sull'hosting Aruba via FTP.
+# Servono due secret del repo: FTP_USERNAME e FTP_PASSWORD
+# (Settings > Secrets and variables > Actions > New repository secret).
+# Variabili facoltative (stessa pagina, scheda Variables): FTP_SERVER, FTP_DIR.
+
+on:
+  push:
+    branches: [main]
+    paths: ['sito/**', '.github/workflows/deploy-aruba.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: aruba
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Controllo accesso FTP e cartella del sito
+        id: ftp
+        env:
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+          SERVER: ${{ vars.FTP_SERVER || 'ftp.napolifoodracing.it' }}
+          DIR: ${{ vars.FTP_DIR }}
+        run: |
+          if [ -z "$U" ] || [ -z "$P" ]; then
+            echo "::error::Mancano i secret FTP_USERNAME e FTP_PASSWORD (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          # FTP cifrato se Aruba lo accetta, altrimenti FTP normale
+          if LIST=$(curl -sS --max-time 40 --ssl-reqd --list-only "ftp://$SERVER/" --user "$U:$P" 2>/dev/null); then
+            PROTO=ftps
+          elif LIST=$(curl -sS --max-time 40 --list-only "ftp://$SERVER/" --user "$U:$P"); then
+            PROTO=ftp
+          else
+            echo "::error::Accesso FTP non riuscito su $SERVER: controlla utente e password."
+            exit 1
+          fi
+          echo "Collegamento: $PROTO"
+          echo "Cartelle nella radice FTP:"; echo "$LIST" | sed 's/^/  - /'
+          if [ -z "$DIR" ]; then
+            DIR=./
+            for d in public_html www.napolifoodracing.it htdocs www; do
+              if echo "$LIST" | tr -d '\r' | grep -qx "$d"; then DIR="./$d/"; break; fi
+            done
+          fi
+          echo "Cartella del sito: $DIR"
+          echo "proto=$PROTO" >> "$GITHUB_OUTPUT"
+          echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+          echo "server=$SERVER" >> "$GITHUB_OUTPUT"
+
+      - name: Carica i file del sito
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ steps.ftp.outputs.server }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ steps.ftp.outputs.proto }}
+          local-dir: ./sito/
+          server-dir: ${{ steps.ftp.outputs.dir }}
+
+      - name: Fatto
+        run: echo "Sito caricato su ${{ steps.ftp.outputs.server }} in ${{ steps.ftp.outputs.dir }}. Apri https://napolifoodracing.it (Ctrl+F5 per ricaricare)."
