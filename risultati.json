@@ -1,0 +1,247 @@
+[
+ {
+  "motore": "webkit",
+  "profilo": "computer",
+  "label": "Computer 1440×900",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 1440,
+   "vw": 1440
+  }
+ },
+ {
+  "motore": "webkit",
+  "profilo": "portatile",
+  "label": "Portatile 1280×720",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 1280,
+   "vw": 1280
+  }
+ },
+ {
+  "motore": "webkit",
+  "profilo": "tablet",
+  "label": "iPad mini 768×1024",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 768,
+   "vw": 768
+  }
+ },
+ {
+  "motore": "webkit",
+  "profilo": "telefono",
+  "label": "iPhone 13 (390×664)",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 390,
+   "vw": 390
+  }
+ },
+ {
+  "motore": "webkit",
+  "profilo": "piccolo",
+  "label": "iPhone SE (320×568)",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 320,
+   "vw": 320
+  }
+ },
+ {
+  "motore": "chromium",
+  "profilo": "computer",
+  "label": "Computer 1440×900",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 1440,
+   "vw": 1440
+  }
+ },
+ {
+  "motore": "chromium",
+  "profilo": "telefono",
+  "label": "iPhone 13 (390×664)",
+  "console": [],
+  "erroriPagina": [],
+  "richieste": [],
+  "shots": [
+   "00_intro.jpg",
+   "01_hero.jpg",
+   "02_fascia-info.jpg",
+   "03_come-funziona.jpg",
+   "04_lire.jpg",
+   "05_piloti.jpg",
+   "06_piloti-50.jpg",
+   "07_piloti-100.jpg",
+   "08_dj.jpg",
+   "09_mappa.jpg",
+   "10_mappa-box.jpg",
+   "11_mappa-pista.jpg",
+   "12_domande.jpg",
+   "13_footer.jpg"
+  ],
+  "check": {
+   "sborda": [],
+   "piccoli": [],
+   "senzaAlt": [],
+   "font": {
+    "titoli": true,
+    "testo": true
+   },
+   "larghezzaPagina": 390,
+   "vw": 390
+  }
+ }
+]
