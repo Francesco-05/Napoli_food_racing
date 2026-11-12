@@ -12,10 +12,10 @@ Ogni modifica a `sito/` sul ramo `main` viene caricata da sola sull'hosting Arub
 Si può anche rilanciare a mano: Actions › Carica su Aruba › Run workflow.
 
 Una volta sola, in **Settings › Secrets and variables › Actions**, servono due secret:
-- `FTP_USERNAME`: utente FTP di Aruba
-- `FTP_PASSWORD`: password FTP di Aruba
+- `FTP_USERNAME`: utente FTP di Aruba (nel pannello, formato `1234567@aruba.it`)
+- `FTP_PASSWORD`: la stessa password del pannello Aruba
 
-Facoltativo (scheda Variables): `FTP_SERVER` se il server non è `ftp.napolifoodracing.it`, `FTP_DIR` per forzare la cartella del sito (di solito la trova da solo).
+Facoltativo (scheda Variables): `FTP_SERVER` se il server non è `ftp.napolifoodracing.it`, `FTP_DIR` per caricare in una cartella diversa dalla radice.
 
 ## Come si comporta la pagina
 Cambia da sola in base alla data (ora di Roma): pre-gara, countdown (24-26/11), live (27-29/11), fine (dal 30/11).

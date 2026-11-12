@@ -3,6 +3,7 @@ name: Carica su Aruba
 # Ogni modifica alla cartella sito/ sul ramo main viene caricata sull'hosting Aruba via FTP.
 # Servono due secret del repo: FTP_USERNAME e FTP_PASSWORD
 # (Settings > Secrets and variables > Actions > New repository secret).
+# Utente FTP: quello del pannello Aruba (formato 1234567@aruba.it); password: la stessa del pannello.
 # Variabili facoltative (stessa pagina, scheda Variables): FTP_SERVER, FTP_DIR.
 
 on:
@@ -46,12 +47,8 @@ jobs:
           fi
           echo "Collegamento: $PROTO"
           echo "Cartelle nella radice FTP:"; echo "$LIST" | sed 's/^/  - /'
-          if [ -z "$DIR" ]; then
-            DIR=./
-            for d in public_html www.napolifoodracing.it htdocs www; do
-              if echo "$LIST" | tr -d '\r' | grep -qx "$d"; then DIR="./$d/"; break; fi
-            done
-          fi
+          # Su Aruba Hosting Linux il sito sta nella radice FTP (pannello: Percorso "/")
+          [ -z "$DIR" ] && DIR=./
           echo "Cartella del sito: $DIR"
           echo "proto=$PROTO" >> "$GITHUB_OUTPUT"
           echo "dir=$DIR" >> "$GITHUB_OUTPUT"
