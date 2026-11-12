@@ -15,7 +15,7 @@ Una volta sola, in **Settings › Secrets and variables › Actions**, servono d
 - `FTP_USERNAME`: utente FTP di Aruba (nel pannello, formato `1234567@aruba.it`)
 - `FTP_PASSWORD`: la stessa password del pannello Aruba
 
-Facoltativo (scheda Variables): `FTP_SERVER` se il server non è `ftp.napolifoodracing.it`, `FTP_DIR` per caricare in una cartella diversa dalla radice.
+Facoltativo (scheda Variables): `FTP_SERVER` se il server non è `ftp.napolifoodracing.it`, `FTP_DIR` per caricare in una cartella diversa da `www.napolifoodracing.it` (lo spazio FTP ospita anche altri domini: il caricamento tocca solo quella cartella).
 
 ## Come si comporta la pagina
 Cambia da sola in base alla data (ora di Roma): pre-gara, countdown (24-26/11), live (27-29/11), fine (dal 30/11).
