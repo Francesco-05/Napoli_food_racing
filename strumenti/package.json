@@ -1,0 +1,13 @@
+{
+  "name": "napoli-food-racing-strumenti",
+  "private": true,
+  "type": "commonjs",
+  "description": "Controlli automatici della landing (Chromium + WebKit/Safari).",
+  "scripts": {
+    "build": "python3 ../sorgente/build.py",
+    "controllo": "node controllo.js"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

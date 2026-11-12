@@ -1,0 +1,68 @@
+# Controllo automatico: apre la landing con WebKit (il motore di Safari) e con Chromium,
+# su computer, iPad e iPhone, e pubblica screenshot + report nel branch "controlli".
+# Parte da solo a ogni push che cambia il sito, oppure a mano da Actions > Controllo > Run workflow
+# (lì puoi anche scrivere un indirizzo, per esempio https://www.napolifoodracing.it/).
+name: Controllo Safari e Chrome
+
+on:
+  push:
+    branches-ignore: [controlli]
+    paths: ['sito/**', 'strumenti/**', '.github/workflows/controllo.yml']
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Indirizzo da controllare (vuoto = il sito del commit)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: controllo-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  controllo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Installa Playwright con WebKit e Chromium
+        working-directory: strumenti
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps webkit chromium
+
+      - name: Controlla la pagina
+        id: controllo
+        env:
+          OUT: ${{ github.workspace }}/report
+        run: node strumenti/controllo.js "${{ github.event.inputs.url }}"
+
+      - name: Pubblica il report nel branch controlli
+        if: always()
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -f report/README.md ] || exit 0
+          cd report
+          git init -q -b controlli
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Controllo ${GITHUB_SHA::7} (${GITHUB_REF_NAME})"
+          git push -qf "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" controlli
+          echo "Report: https://github.com/${GITHUB_REPOSITORY}/tree/controlli" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-controllo
+          path: report
+          retention-days: 7
