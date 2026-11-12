@@ -29,6 +29,8 @@ def rep(m):
             s=re.sub(r'(<svg[^>]*>)',r'\1<rect x="-4000" y="785" width="9000" height="4000" fill="#CFDDD8"/><rect x="-4000" y="-3982" width="9000" height="4000" fill="#EFE8DA"/>',s,count=1)
         else:
             s=re.sub(r'(<clipPath id="zmclip"><rect[^>]*?) rx="[^"]+"',r'\1',s,count=1)
+            # le scritte a sinistra si staccano un po' dal bordo della cornice
+            s=s.replace('x="248"','x="258"').replace('x="252"','x="261"').replace('M370.1075686090643 424.8709090909091 H418','M380 424.8709090909091 H418')
         return uniq(re.sub(r'\s+',' ',s))
     if name in ('evmapG','zoommapG'):
         s=P[name[:-1]]
