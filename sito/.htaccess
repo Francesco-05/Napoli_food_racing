@@ -1,0 +1,2 @@
+# Apri la landing (index.html) prima della pagina provvisoria di Aruba (index.php)
+DirectoryIndex index.html index.php
