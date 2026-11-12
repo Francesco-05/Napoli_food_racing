@@ -58,6 +58,7 @@ Chi chiede le modifiche è **Buzz** (BUZZ Studio): rispondi in italiano, dagli d
 ## Pubblicazione (Aruba)
 - Lo spazio FTP di Aruba ospita **anche altri siti**: il workflow tocca solo la cartella `www.napolifoodracing.it/` (e `anteprima/` dentro). Non cambiare `server-dir` e non usare opzioni che cancellano file sul server.
 - Le credenziali FTP stanno solo nei secret di GitHub (`FTP_USERNAME`, `FTP_PASSWORD`). Mai scriverle in file, commit o chat.
+- Dopo la pubblicazione Aruba serve la versione vecchia dalla sua cache per circa 10-15 minuti. Per controllare subito il sito vero: Actions › Controllo Safari e Chrome con l'indirizzo `https://www.napolifoodracing.it/?v=1`.
 
 ## Le skill di Buzz
 Le skill complete (impeccable con il suo programma, design-taste-frontend, playwright-cli con Safari) sono installate sul Mac di Buzz, nella cartella `Desktop/BUZZ/RACING SHOW`. Da lì, in Claude Code:

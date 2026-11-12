@@ -18,6 +18,7 @@ Landing page di **napolifoodracing.it**: l'area food del Napoli Racing Show, 27-
 1. Le modifiche si fanno su un ramo (per esempio `rifinitura`), mai direttamente su `main`.
 2. A ogni push del ramo partono da soli il **controllo** (report nel ramo `controlli`) e l'**anteprima** su `/anteprima/`.
 3. Si guarda l'anteprima dal telefono. Quando va bene, il ramo si porta su `main` e il sito vero si aggiorna in circa 30 secondi.
+   Attenzione: Aruba tiene la pagina in cache per circa 10-15 minuti. Se dal telefono vedi ancora la versione vecchia, aspetta o apri l'indirizzo con `?v=1` in fondo.
 
 ### Come chiedere una modifica (per avere il risultato al primo giro)
 - Uno **screenshot** dal telefono o dal computer, con un cerchio su cosa non va.
