@@ -39,6 +39,8 @@ jobs:
           elif LIST=$(curl -sS --max-time 40 --list-only "ftp://$SERVER/" --user "$U:$P"); then
             PROTO=ftp
           else
+            echo "Risposte del server FTP (diagnosi):"
+            curl -sv --max-time 40 --list-only "ftp://$SERVER/" --user "$U:$P" 2>&1 | grep -E '^< ' | grep -v -i 'pass' || true
             echo "::error::Accesso FTP non riuscito su $SERVER: controlla utente e password."
             exit 1
           fi
