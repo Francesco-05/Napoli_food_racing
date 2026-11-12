@@ -57,7 +57,7 @@ setTimeout(function(){d.classList.add('hero-in');d.classList.remove('intro-on')}
   color-scheme:light;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 1px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--verde);color:var(--panna);font-family:var(--f-info);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--verde-s)}
 [hidden]{display:none!important}
@@ -81,7 +81,7 @@ a,button,summary{-webkit-tap-highlight-color:rgba(220,227,91,.22)}
 /* ---- tipografia ---- */
 .F{font-family:var(--f-titolo);font-style:italic;font-weight:400;letter-spacing:-.03em;line-height:.86}
 .h2{font-size:clamp(56px,9vw,112px);margin:0;text-wrap:balance}
-.dial-it{font-family:var(--f-info);font-weight:700;text-transform:uppercase;font-size:clamp(15px,1.6vw,18px);line-height:1.4;letter-spacing:.02em;margin:22px 0 0;max-width:34ch}
+.dial-it{font-family:var(--f-info);font-weight:600;font-size:clamp(19px,2vw,23px);line-height:1.35;letter-spacing:-.005em;margin:20px 0 0;max-width:30ch;text-wrap:pretty}
 .sub{font-family:var(--f-titolo);font-style:italic;font-size:clamp(30px,4vw,44px);line-height:1;letter-spacing:-.02em;margin:14px 0 0;color:var(--terra-t)}
 .body{font-size:18px;line-height:1.55;max-width:58ch;margin:18px 0 0}
 .mo{display:inline-block;height:1.42em;width:auto;vertical-align:-.3em;margin:0 .06em}
@@ -97,7 +97,7 @@ a,button,summary{-webkit-tap-highlight-color:rgba(220,227,91,.22)}
 .tenda-wrap{background:var(--verde-s);padding-top:env(safe-area-inset-top,0px)}
 
 /* ---- header ---- */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(29,61,40,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid rgba(243,238,226,.14)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--verde-s);border-bottom:1px solid rgba(243,238,226,.14)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--panna);min-width:0}
 .brand svg{width:42px;height:42px;flex:none;color:var(--panna)}
@@ -288,7 +288,7 @@ body[data-fase="live"] .badge .p{background:var(--terra);box-shadow:0 0 0 4px rg
 .luci-festone{position:absolute;left:0;right:0;top:0;height:70px;pointer-events:none;overflow:hidden}
 
 /* ---- mappa: una sola mappa, la telecamera vola tra 'a pista e 'o box ---- */
-.mappa{padding-block:clamp(72px,9vw,112px)}
+.mappa{padding-block:clamp(56px,6vw,80px) clamp(72px,9vw,112px)}
 .m-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px clamp(32px,5vw,72px);align-items:end}
 .m-lead{font-weight:600;font-size:clamp(17px,1.7vw,19px);line-height:1.5;color:var(--verde);max-width:44ch;margin:0}
 .m-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px;margin-top:22px;border-radius:99px;background:rgba(42,85,56,.1);max-width:420px}
@@ -297,9 +297,9 @@ body[data-fase="live"] .badge .p{background:var(--terra);box-shadow:0 0 0 4px rg
 .m-seg button[aria-pressed="true"]{background:var(--verde);color:var(--panna)}
 .m-seg button:not([aria-pressed="true"]):hover{background:rgba(42,85,56,.1)}
 html:not(.js) .m-seg{display:none}
-.m-stage{position:relative;margin:40px auto 0;width:min(100%,calc((100vh - 340px) * 2));min-width:min(100%,640px);border-radius:22px;background:var(--panna);
+.m-stage{position:relative;margin-top:32px;border-radius:22px;background:var(--panna);
   box-shadow:0 0 0 2px var(--verde),0 0 0 9px var(--panna),0 0 0 10.5px rgba(42,85,56,.4),0 34px 60px -34px rgba(29,61,40,.5)}
-.m-frame{position:relative;aspect-ratio:2/1;background:#EFE8DA;border-radius:22px 22px 0 0;overflow:hidden;clip-path:inset(0 round 22px 22px 0 0);isolation:isolate}
+.m-frame{position:relative;height:clamp(380px,calc(100vh - 425px),560px);background:#EFE8DA;border-radius:22px 22px 0 0;overflow:hidden;clip-path:inset(0 round 22px 22px 0 0);isolation:isolate}
 .m-frame>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .m-ev,.m-ov{transform-origin:0 0;will-change:transform}
 .m-zmap{opacity:0;transition:opacity .3s ease}
@@ -366,7 +366,7 @@ html:not(.js) .m-ov,html:not(.js) .m-bar{display:none}
 .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:22px;font-size:13px;opacity:.65}
 
 /* ---- barra fissa mobile ---- */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:10px;padding:12px var(--gut-r) calc(12px + env(safe-area-inset-bottom,0px)) var(--gut);background:rgba(29,61,40,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(243,238,226,.16);transform:translateY(110%);transition:transform .25s ease}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:10px;padding:12px var(--gut-r) calc(12px + env(safe-area-inset-bottom,0px)) var(--gut);background:var(--verde-s);border-top:1px solid rgba(243,238,226,.16);box-shadow:0 -14px 28px -18px rgba(0,0,0,.45);transform:translateY(110%);transition:transform .25s ease}
 .barra.on{transform:none}
 .barra .btn{flex:1;min-height:50px;padding:0 12px;font-size:12.5px}
 
@@ -394,7 +394,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
 }
 .in-track .road{fill:none;stroke:rgba(0,0,0,.28);stroke-width:30;stroke-linejoin:round}
 .in-track .b{fill:none;stroke:rgba(243,238,226,.14);stroke-width:20;stroke-linejoin:round}
-.in-pin .pg{transform:scale(0);transform-origin:0 0;transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.in-pin .pg{transform:scale(0);transform-origin:0 0;transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .in-pin.on .pg{transform:scale(1)}
 .in-track .d{fill:none;stroke:var(--panna);stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
 .in-track .start{stroke:var(--pallina);stroke-width:4}
@@ -430,11 +430,13 @@ html.intro-on,html.intro-on body{overflow:hidden}
 .pin-nav button:hover{border-color:var(--panna);background:rgba(243,238,226,.08)}
 .pin-nav svg{width:18px;height:18px}
 .pin.pinned .pin-nav{display:none}
-.pin.pinned .pin-sticky{position:sticky;top:68px;height:calc(100vh - 68px);display:flex;flex-direction:column;justify-content:center;padding-block:20px 28px;overflow:hidden}
+.pin.pinned .pin-sticky{position:sticky;top:var(--hh);height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));display:flex;flex-direction:column;justify-content:center;padding-block:20px 28px;overflow:hidden}
 .pin.pinned .pin-viewport{overflow:visible;scroll-snap-type:none;padding:30px 0 26px}
 .pin.pinned .pin-track{will-change:transform}
 .pin.pinned .h2{font-size:clamp(56px,6.2vw,92px)}
 .pin.pinned .dial-it,.pin.pinned .body{margin-top:12px}
+
+p{text-wrap:pretty}
 
 /* ---- hover e pressione ---- */
 .btn:active{transform:translateY(1px) scale(.985);transition-duration:.09s}
@@ -525,8 +527,7 @@ html.js .passo:not(.lit) .n{background:var(--carta);color:var(--terra);box-shado
   .nav .btn{display:none}
   .titolo-row{grid-template-columns:minmax(0,1fr)}
   .m-head,.m-info{grid-template-columns:minmax(0,1fr)}
-  .m-stage{width:100%;min-width:0}
-  .m-frame{aspect-ratio:16/10}
+  .m-frame{height:auto;aspect-ratio:16/10}
 }
 @media (max-width:560px){
   body{font-size:16px}
@@ -562,6 +563,20 @@ html.js .passo:not(.lit) .n{background:var(--carta);color:var(--terra);box-shado
   .gettoni span{width:66px;height:66px}.gettoni svg{width:54px;height:54px}
   .tessera .fin{height:180px}
   .cd .v{font-size:25px}
+}
+@media (max-width:560px){
+  .in-c{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .in-skip{right:auto;left:50%;transform:translateX(-50%)}
+}
+@media (max-width:360px){
+  .top .wrap{gap:10px}
+  .brand{gap:9px}
+  .brand svg{width:32px;height:32px}
+  .brand .n{font-size:16px}
+  .brand .b .mo{height:21px}
+  .badge{padding:0 9px 0 6px;letter-spacing:.08em;gap:6px}
+  .barra .btn{font-size:12px;letter-spacing:.08em;padding:0 8px}
+  .m-chip{letter-spacing:.06em;font-size:12px}
 }
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
@@ -949,7 +964,7 @@ const CONFIG = {
       S(f,'t',d);S(f,'b',old);S(f,'ft',old);S(f,'fb',d);
       const ft=f.querySelector('.ft'),fb=f.querySelector('.fb');
       ft.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(-90deg)'}],{duration:220,easing:'cubic-bezier(.55,0,1,.45)',fill:'forwards'});
-      const a=fb.animate([{transform:'rotateX(90deg)'},{transform:'rotateX(0deg)'}],{duration:260,delay:220,easing:'cubic-bezier(.2,.9,.3,1.15)',fill:'forwards'});
+      const a=fb.animate([{transform:'rotateX(90deg)'},{transform:'rotateX(0deg)'}],{duration:260,delay:220,easing:'cubic-bezier(.2,.9,.3,1)',fill:'forwards'});
       a.onfinish=()=>{S(f,'b',d);S(f,'ft',d);ft.getAnimations().forEach(x=>x.cancel());}}
     window.__setFlaps=vals=>{const s=vals.map(n=>String(Math.min(99,n)).padStart(2,'0')).join('');fls.forEach((f,i)=>flip(f,s[i]))};})();
   tick();setInterval(tick,1000);
@@ -992,14 +1007,15 @@ const CONFIG = {
   let dist=0,pinned=false;
   function setP(p){bar.style.setProperty('--p',p.toFixed(4))}
   let pw=0,ph=0;
+  let hh=68;
   function layoutPin(force){const w=innerWidth,h=innerHeight;
-    if(force!==true&&w===pw&&Math.abs(h-ph)<160)return;pw=w;ph=h;
+    if(force!==true&&w===pw&&Math.abs(h-ph)<160)return;pw=w;ph=h;hh=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hh'))||68;
     const want=!rm.matches&&w>=900&&h>=720;
     pin.classList.toggle('pinned',want);pinned=want;
     if(want){track.style.transform='';dist=Math.max(0,track.scrollWidth-document.documentElement.clientWidth);pin.style.height=(pin.querySelector('.pin-sticky').offsetHeight+dist)+'px';onScroll()}
     else{pin.style.height='';track.style.transform='';onVp()}
   }
-  function onScroll(){if(!pinned)return;const top=pin.getBoundingClientRect().top-68;const p=Math.min(1,Math.max(0,-top/(dist||1)));track.style.transform=`translate3d(${-p*dist}px,0,0)`;setP(p)}
+  function onScroll(){if(!pinned)return;const top=pin.getBoundingClientRect().top-hh;const p=Math.min(1,Math.max(0,-top/(dist||1)));track.style.transform=`translate3d(${-p*dist}px,0,0)`;setP(p)}
   function onVp(){if(pinned)return;const m=vp.scrollWidth-vp.clientWidth;setP(m>0?vp.scrollLeft/m:0)}
   addEventListener('scroll',onScroll,{passive:true});vp.addEventListener('scroll',onVp,{passive:true});
   addEventListener('resize',layoutPin);rm.addEventListener&&rm.addEventListener('change',()=>layoutPin(true));
@@ -1026,7 +1042,7 @@ const CONFIG = {
   const gett=[...document.querySelectorAll('.gettoni span')],lireSec=$('lire');
   const vis={str:true,dj:false,lire:false};
   function gettoni(){if(!gett.length||!lireSec)return;const r=lireSec.getBoundingClientRect();const p=(innerHeight-r.top)/(innerHeight+r.height);
-    if(p>0&&p<1)gett.forEach((g,i)=>g.style.transform=`rotateY(${(p*540+(i?90:0)).toFixed(1)}deg)${i?' translateY(22px) rotate(-12deg)':''}`)}
+    if(p>0&&p<1)gett.forEach((g,i)=>{const a=(p-.5)*3*Math.PI+(i?.5:0),k=Math.max(.14,Math.abs(Math.cos(a)));g.style.transform=`${i?'translateY(22px) rotate(-12deg) ':''}scaleX(${k.toFixed(3)})`})}
   function loop(now){raf2=0;const dt=lastT?Math.min(64,now-lastT)/1000:.016;lastT=now;
     const y=scrollY,dy=y-lastY;lastY=y;if(dy)dirScroll=dy>0?1:-1;
     vel+=(Math.abs(dy)/Math.max(dt,.008)-vel)*.14;if(vel<.5)vel=0;
@@ -1104,8 +1120,8 @@ const CONFIG = {
       ev.style.transform=t;ov.style.transform=t}
     function layout(){const w=frame.clientWidth,h=frame.clientHeight;if(!w||!h)return false;W=w;H=h;
       const a=W/H,stretto=W<640;
-      V0=fit(stretto?[165,100,1080,650]:[120,17.27,1630,786],EXT,a);
-      V1=fit(stretto?[452,262,950,470]:[240,258,1046,600],ZMB,a);
+      V0=fit(stretto?[165,100,1080,650]:[120,30,1630,720],EXT,a);
+      V1=fit(stretto?[452,262,950,470]:[240,258,1046,600],ZMB,a);V1[1]=ZMB[1];// il box parte dall'alto: insegna Area food e campi sempre in vista
       vb(ev,V0);vb(ov,V0);vb(zm,V1);s0=W/V0[2];
       const s1=W/V1[2];pulse.style.left=((FOOD[0]-V1[0])*s1).toFixed(1)+'px';pulse.style.top=((FOOD[1]-V1[1])*s1).toFixed(1)+'px';
       pulse.style.setProperty('--r',Math.round(clamp(80*s1,52,120))+'px');
@@ -1176,9 +1192,12 @@ const CONFIG = {
 
   // Barra fissa (solo telefono): compare dopo l'hero
   const barra=$('barra'),hero=document.querySelector('.hero'),foot=document.querySelector('.piede');
-  if('IntersectionObserver' in window){let hv=true,fv=false;const upd=()=>barra.classList.toggle('on',!hv&&!fv);
+  // Si toglie di mezzo anche su tessere e mappa, che hanno già i loro bottoni e non devono restare coperte.
+  if('IntersectionObserver' in window){let hv=true,fv=false;const via=new Set();const upd=()=>barra.classList.toggle('on',!hv&&!fv&&!via.size);
     new IntersectionObserver(([e])=>{hv=e.isIntersecting;upd()}).observe(hero);
-    new IntersectionObserver(([e])=>{fv=e.isIntersecting;upd()}).observe(foot);}
+    new IntersectionObserver(([e])=>{fv=e.isIntersecting;upd()}).observe(foot);
+    const io=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?via.add(e.target):via.delete(e.target));upd()},{rootMargin:'-35% 0px -35% 0px'});
+    ['piloti','mappa'].forEach(id=>{const el=$(id);if(el)io.observe(el)});}
 
   // Passa parola
   $('share').addEventListener('click',async()=>{const data={title:'Napoli Food Racing by Morè',text:"27·28·29 novembre al Tennis Club Napoli: l'area food del Napoli Racing Show. Ingresso gratuito, si paga in lire!",url:location.href.split('#')[0]};
