@@ -144,7 +144,7 @@ async function main() {
           // la mappa: prova i comandi se ci sono
           if (sel === '#mappa') {
             const bottoni = await page.$$('#mappa [data-vista]');
-            for (const b of bottoni) { const v = await b.getAttribute('data-vista'); if (!(await b.isVisible())) continue; await b.click().catch(() => {}); await attesa(1600); await scatta(`mappa-${v}`); }
+            for (const b of bottoni) { const v = await b.getAttribute('data-vista'); if (!(await b.isVisible())) continue; await b.click().catch(() => {}); await attesa(v === 'pista' ? 3800 : 1600); await scatta(`mappa-${v}`); }
           }
         }
         r.check = await controllaPagina(page);
