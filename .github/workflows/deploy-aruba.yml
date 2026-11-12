@@ -1,6 +1,8 @@
 name: Carica su Aruba
 
 # Ogni modifica alla cartella sito/ sul ramo main viene caricata sull'hosting Aruba via FTP.
+# Gli altri rami (per esempio "rifinitura") finiscono in https://www.napolifoodracing.it/anteprima/,
+# nascosti a Google: così si prova tutto sul telefono prima di andare online.
 # Servono due secret del repo: FTP_USERNAME e FTP_PASSWORD
 # (Settings > Secrets and variables > Actions > New repository secret).
 # Utente FTP: quello del pannello Aruba (formato 1234567@aruba.it); password: la stessa del pannello.
@@ -9,7 +11,7 @@ name: Carica su Aruba
 
 on:
   push:
-    branches: [main]
+    branches-ignore: [controlli]
     paths: ['sito/**', '.github/workflows/deploy-aruba.yml']
   workflow_dispatch:
 
@@ -50,12 +52,21 @@ jobs:
           echo "Cartelle nella radice FTP:"; echo "$LIST" | sed 's/^/  - /'
           # Lo stesso spazio Aruba ospita più domini: questo sito sta nella sua cartella www.napolifoodracing.it
           [ -z "$DIR" ] && DIR=./www.napolifoodracing.it/
+          # rami diversi da main: sottocartella anteprima/ (il sito vero non viene toccato)
+          if [ "$GITHUB_REF_NAME" != "main" ]; then DIR="${DIR%/}/anteprima/"; fi
           echo "Contenuto attuale di $DIR:"
           curl -sS --max-time 40 $( [ "$PROTO" = ftps ] && echo --ssl-reqd ) --list-only "ftp://$SERVER/${DIR#./}" --user "$U:$P" | sed 's/^/  - /' || true
           echo "Cartella del sito: $DIR"
           echo "proto=$PROTO" >> "$GITHUB_OUTPUT"
           echo "dir=$DIR" >> "$GITHUB_OUTPUT"
           echo "server=$SERVER" >> "$GITHUB_OUTPUT"
+
+      - name: Anteprima nascosta a Google
+        if: github.ref_name != 'main'
+        run: |
+          sed -i 's#<meta charset="utf-8">#<meta charset="utf-8">\n<meta name="robots" content="noindex, nofollow">#' sito/index.html
+          rm -f sito/robots.txt sito/sitemap.xml
+          grep -c 'noindex' sito/index.html
 
       - name: Carica i file del sito
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -68,4 +79,6 @@ jobs:
           server-dir: ${{ steps.ftp.outputs.dir }}
 
       - name: Fatto
-        run: echo "Sito caricato su ${{ steps.ftp.outputs.server }} in ${{ steps.ftp.outputs.dir }}. Apri https://napolifoodracing.it (Ctrl+F5 per ricaricare)."
+        run: |
+          if [ "$GITHUB_REF_NAME" = "main" ]; then U=https://www.napolifoodracing.it/; else U=https://www.napolifoodracing.it/anteprima/; fi
+          echo "Sito caricato in ${{ steps.ftp.outputs.dir }}. Apri $U (Ctrl+F5 per ricaricare)." | tee -a "$GITHUB_STEP_SUMMARY"

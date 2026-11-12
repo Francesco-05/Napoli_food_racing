@@ -20,6 +20,16 @@ def rep(m):
     name=m.group(1);cls=m.group(2)
     if name=='ballh1': return clean(P['ball'],'ball')
     if name=='ballsm': return clean(P['ball'],'ball')
+    if name in ('mapPista','mapBox'):
+        s=P['evmap' if name=='mapPista' else 'zoommap']
+        cls,par=('m-ev','xMidYMid slice') if name=='mapPista' else ('m-zmap','xMidYMin slice')
+        s=re.sub(r'<svg width="\d+" height="\d+"',f'<svg class="{cls}" aria-hidden="true" focusable="false" preserveAspectRatio="{par}"',s,count=1)
+        if name=='mapPista':
+            # mare sotto e terra sopra oltre i bordi del disegno, per qualsiasi proporzione dello schermo
+            s=re.sub(r'(<svg[^>]*>)',r'\1<rect x="-4000" y="785" width="9000" height="4000" fill="#CFDDD8"/><rect x="-4000" y="-3982" width="9000" height="4000" fill="#EFE8DA"/>',s,count=1)
+        else:
+            s=re.sub(r'(<clipPath id="zmclip"><rect[^>]*?) rx="[^"]+"',r'\1',s,count=1)
+        return uniq(re.sub(r'\s+',' ',s))
     if name in ('evmapG','zoommapG'):
         s=P[name[:-1]]
         s=re.sub(r'<svg width="\d+" height="\d+"','<svg class="'+('g-ev' if name=='evmapG' else 'g-zm')+'" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice"',s,count=1)
